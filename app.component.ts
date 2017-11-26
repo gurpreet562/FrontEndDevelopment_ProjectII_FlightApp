@@ -7,21 +7,22 @@ import { ListService } from "./listService";
   providers: [ListService]
 })
 export class AppComponent {
-  name: string;
-  description: string;
-  rating: string;
-  releasedate:number;
-  movieDetail = {};
+  flightFrom: string;
+  flightTo: string;
+  airlines: string;
+  date:number;
+  flightDetail = {};
   arrayList: any[] = [];
 
 constructor(private _listService: ListService)	{}
 
   ngOnInit() {
     this.movieDetail = {
-      name: '',
-      description: '',
-      releasedate: '',
-      rating:''
+      flightFrom: '',
+      flightTo: '',
+      airlines: '',
+      date:'',
+      time:''
        }
 }
 
@@ -32,10 +33,10 @@ constructor(private _listService: ListService)	{}
     console.log(values);
 
     let model = {
-      name: values.name,
-      description: values.description,
-      releasedate: values.date,
-      rating: values.rate
+      flightFrom: values.flightFrom,
+      flightTo: values.flightTo,
+      date: values.date,
+      airlines: values.airlines
     }
     this._listService.addList(model);
     this.arrayList = this._listService.getList();
