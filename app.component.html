@@ -1,0 +1,76 @@
+<div class="form-group">
+  <div class="col-sm-10">
+    <form #f="ngForm" (ngSubmit)="submit(f.value,f.valid)" novalidate autocomplete="off">
+      <div class="form-group">
+        <input type="text" name="name" class="form-control" [(ngModel)]="userDetail.name" placeholder="Enter the Movie Name" required #refName='ngModel' pattern="^[a-zA-Z]*$">
+        <div *ngIf="refName.errors && (refName.dirty || refName.touched)" class="alert alert-danger">
+          <div [hidden]="!refName.errors.required">
+            Name is required.
+          </div>
+          <div [hidden]="!refName.errors.pattern">
+            Please enter alphabets.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" name="description" class="form-control" [(ngModel)]="userDetail.description" placeholder="Enter the description" required #refDescription='ngModel' minlength='2'>
+        <div *ngIf="refDescription.errors && (refDescription.dirty || refDescription.touched)" class="alert alert-danger">
+          <div [hidden]="!refDescription.errors.required">
+           Description is required.
+          </div>
+          <div [hidden]="!refDescription.errors.minlength">
+              Please enter atleast 2 characeters.
+          </div>
+        </div>   
+       
+      </div>
+      <div class="form-group">
+        <input type="text" name="rate" class="form-control" [(ngModel)]="userDetail.rate" placeholder="Enter the rating" required #refrate='ngModel' pattern="^[0-9]*$" minlength="1"
+         maxlength="3" >
+        <div *ngIf="refrate.errors && (refrate.dirty || refrate.touched)" class="alert alert-danger">
+          <div [hidden]="!refrate.errors.required">
+            rate is required.
+          </div>
+          <div [hidden]="!refrate.errors.pattern">
+            Please enter number.
+          </div>
+        </div>
+      </div>
+    <input type="date" name="date" class="form-control" [(ngModel)]="userDetail.date" placeholder="Enter the rating" required #refdate='ngModel'/>
+
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+
+    </form>
+
+    <hr/>
+    <div *ngIf="arrayList.length > 0">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Rating</th>
+              <th>Release Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of arrayList">
+              <td>{{item.name}}</td>
+              <td>{{item.description}}</td>
+              <td>{{item.rate}}</td>
+              <td>{{item.date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
